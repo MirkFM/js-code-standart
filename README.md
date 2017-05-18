@@ -6,7 +6,7 @@
 
 ## Оглавление
 
-  1. [Отступы](#indents)
+  1. [Отступы](#Отступы)
   1. [References](#references)
   1. [Objects](#objects)
   1. [Arrays](#arrays)
