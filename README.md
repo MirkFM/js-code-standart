@@ -15,24 +15,24 @@
 ## Use strict
   Директива 'use strict' рекомендована к использованию. Запрещается объявлять 'use strict' глобально (для всего кода).
 
-    ```javascript
-    // bad
-    'use strict'
-    ...
+  ```javascript
+  // bad
+  'use strict'
+  ...
 
-    // good
-    (function(){
-        'use strict'
-    })();
-    ```
+  // good
+  (function(){
+      'use strict'
+  })();
+  ```
 
 ## Меньше не значит лучше
   Запрещается использовать условный тернарный оператор, если он затрудняет понимание кода
 
-    ```javascript
-    // bad
-    i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
-    ```
+  ```javascript
+  // bad
+  i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
+  ```
 
 
 ## Имена переменных и констант
@@ -46,37 +46,37 @@
 
 Запрещено использовать сокращения которые совпадают с общепринятыми, Например ie (Inner Element, хотя видя мы подразумеваем Internet Explorer), а также "универсальных" переменных (поведение которых зависит от того, в какой части кода они находятся).
 
-    ```javascript
-    // bad
-    var a = 3.14159,
-        B = 768,
-        RED = "#F00",
-        GREEN = "#0F0",
-        ssilka = 'http://...',
-        moiTovari,
-        cena;
+  ```javascript
+  // bad
+  var a = 3.14159,
+      B = 768,
+      RED = "#F00",
+      GREEN = "#0F0",
+      ssilka = 'http://...',
+      moiTovari,
+      cena;
 
-    function developer() {
-        ...
-    }
+  function developer() {
+      ...
+  }
 
-    var programmer = new developer();
+  var programmer = new developer();
 
-    // good
-    const PI = 3.14159;
-    const MIN_TABLET_WIDTH = 768;
-    const COLOR_RED = "#F00";
-    const COLOR_GREEN = "#0F0";
-    let myGoods;
-    let goodsPrice;
-    let goodsLink = 'http://...';
+  // good
+  const PI = 3.14159;
+  const MIN_TABLET_WIDTH = 768;
+  const COLOR_RED = "#F00";
+  const COLOR_GREEN = "#0F0";
+  let myGoods;
+  let goodsPrice;
+  let goodsLink = 'http://...';
 
-    function Developer() {
-        ...
-    }
+  function Developer() {
+      ...
+  }
 
-    const programmer = new Developer();
-    ```
+  const programmer = new Developer();
+  ```
 
 ## Выравнивание и отступы
   Для форматирования кода используются пробелы. Ширина таба - 4 пробела.
@@ -91,88 +91,88 @@
 
 В остальных случаях пробел ставится.
 
-    ```javascript
-    // bad
-    let result=1;
-    for(var i=0;i<n;i++){result*=x;}
-    alert(pow(x,n));
+  ```javascript
+  // bad
+  let result=1;
+  for(var i=0;i<n;i++){result*=x;}
+  alert(pow(x,n));
 
-    // good
-    let result = 1;
-    for (var i = 0; i < n; i++) {
-      result *= x;
-    }
-    alert(pow(x, n));
-    ```
+  // good
+  let result = 1;
+  for (var i = 0; i < n; i++) {
+    result *= x;
+  }
+  alert(pow(x, n));
+  ```
 
 ## Точка с запятой
   Точка с запятой не ставится после управляющих конструкций, анонимных и именнованных функций. В остальных случаях точка с запятой ставится в конце каждой инструкции!
 
-    ```javascript
-    // no use
-    function () {
-      ...
-    }
+  ```javascript
+  // no use
+  function () {
+    ...
+  }
 
-    function myFunction() {
-      ...
-    }
+  function myFunction() {
+    ...
+  }
 
-    for () {
-      ...
-    }
+  for () {
+    ...
+  }
 
-    switch () {
-      ...
-    }
+  switch () {
+    ...
+  }
 
-    try {
-      ...
-    } catch {
-      ...
-    }
+  try {
+    ...
+  } catch {
+    ...
+  }
 
-    if () {
-      ...
-    }
+  if () {
+    ...
+  }
 
 
-    // use
-    let a = 1;
+  // use
+  let a = 1;
 
-    const oneArray = {};
+  const oneArray = {};
 
-    const func = myFunction() {
-      ...
-    };
+  const func = myFunction() {
+    ...
+  };
 
-    (function(){
-      ...
-    });
-    ```
+  (function(){
+    ...
+  });
+  ```
 
 ## Создание объектов
   Запрещено создавать объекты с помощью конструктора *new (Object|Array|Function)*. При их создании следует пользоваться соответствующим литералом и специальным словом const. Так же не рекомендуется использовать любые выражения подразумевающие использование eval().
 
-    ```javascript
-    // bad
-    var oneObject = new Object();
-    var oneArray = new Array();
-    var oneFunction = new Function(аргументы, тело);
-    var programmer = new Developer();
+  ```javascript
+  // bad
+  var oneObject = new Object();
+  var oneArray = new Array();
+  var oneFunction = new Function(аргументы, тело);
+  var programmer = new Developer();
 
-    // bad
-    var oneObject = {};
-    var oneArray = [];
-    var function func(аргументы) {
-        тело
-    }
+  // bad
+  var oneObject = {};
+  var oneArray = [];
+  var function func(аргументы) {
+      тело
+  }
 
-    // good
-    const oneObject = {};
-    const oneArray = [];
-    const function func(аргументы) {
-        тело
-    }
-    const programmer = new Developer();
-    ```
+  // good
+  const oneObject = {};
+  const oneArray = [];
+  const function func(аргументы) {
+      тело
+  }
+  const programmer = new Developer();
+  ```
