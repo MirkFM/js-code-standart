@@ -1,87 +1,178 @@
-# js-code-standart
+# Стандарт написания javaScript кода
 
-Данный стандарт основывается в первую очередь на простоте.
-Какой-то текст
-
+> При выборе между es5 и es6 более приоритетным является синтаксис es6.
 
 ## Оглавление
 
   1. [Отступы](#Отступы)
-  1. [Отступы](#Отступы)
+  1. [Определения](./DEFINITIONS.md)
 
-## Отступы
-  Для форматирования кода используются пробелы. Ширина таба - 4 пробела.
+## Приведение типов
+  + Для приведения к типу number использовать унарный плюс
+  + Для приведения к boolean двойное отрицание
+  + В выражениях, где функция возвращает -1 в случае отстутствия значения использовать "побитовое не" ~
 
-**[⬆ К оглавлению](#Оглавление)**
-
-## Оформление операторов
-  Во всех операторах, кроме унарных, между оператором и переменными (строковыми или числовыми литералами) ставится пробел.
-
-## Точка с запятой
-  Точка с запятой ставится после всех выражений
-
-**[⬆ К оглавлению](#Оглавление)**
-
-## Объявление переменных
-  > При объявлении переменных используем синтаксис es6.
-
-  ### Объявления через let и const не группируем. Сначала объявляем константы, затем переменные без значения, потом переменные с определенным начальным значением.
+## Use strict
+  Директива 'use strict' рекомендована к использованию. Запрещается объявлять 'use strict' глобально (для всего кода).
 
     ```javascript
     // bad
-    let i, len, dragonball, x = 20,
-        items = getItems(),
-        goSportsTeam = true;
-
-    // bad
-    let i;
-    const items = getItems();
-    let dragonball;
-    let x = 20,
-    const goSportsTeam = true;
-    let len;
+    'use strict'
+    ...
 
     // good
-    const goSportsTeam = true;
-    const items = getItems();
-    let dragonball;
-    let i;
-    let length;
-    let x = 20;
+    (function(){
+        'use strict'
+    })();
     ```
 
-  ### Для объявления *объектных типов* (массивы, объекты, функции) используем const. Если не очевиден выбор между let и const, то используем let.
+## Меньше не значит лучше
+  Запрещается использовать условный тернарный оператор, если он затрудняет понимание кода
 
     ```javascript
     // bad
-    superPower = new SuperPower();
-
-    // good
-    const superPower = new SuperPower();
+    i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
     ```
-
-**[⬆ К оглавлению](#Оглавление)**
 
 
 ## Имена переменных и констант
-  При определении имен переменных и функций используем [camelCase синтаксис](https://ru.wikipedia.org/wiki/CamelCase). Первый символ в нижнем регистре. Имя должно быть на английском (**не транслитом!!!**). Имя должно отражать суть переменной. Имена глобальных констант пишутся заглавными буквами, в качестве разделителя между словами использовать символ нижнего подчеркивания. Локальные константы (которые существуют в рамках небольшого блока) можно именовать так же как обычные переменные.
+  > Используем синтаксис es6.
+
+  + При определении имен переменных и функций используем lowerCamelCase. Имя должно быть на английском (не транслитом!!!) и должно отражать суть переменной. 
+  + Имена глобальных констант пишутся заглавными буквами, в качестве разделителя между словами использовать символ нижнего подчеркивания. Локальные константы (которые существуют в рамках небольшого блока) можно именовать так же как обычные переменные.
+  + Для имен конструкторов используется UpperCamelCase (PascalCase);
+
+Объявления через let и const не группируем. В блоке сначала объявляем константы, затем переменные без значения, потом переменные с определенным начальным значением. Переменные объявленные через let и const можно не поднимать в верх блока.
+
+Запрещено использовать сокращения которые совпадают с общепринятыми, Например ie (Inner Element, хотя видя мы подразумеваем Internet Explorer), а также "универсальных" переменных (поведение которых зависит от того, в какой части кода они находятся).
 
     ```javascript
     // bad
-    const a = 3.14159;
-    const B = 768;
+    var a = 3.14159,
+        B = 768,
+        RED = "#F00",
+        GREEN = "#0F0",
+        ssilka = 'http://...',
+        moiTovari,
+        cena;
 
-    // bad
-    const a = 1, b = 1;
+    function developer() {
+        ...
+    }
+
+    var programmer = new developer();
 
     // good
     const PI = 3.14159;
     const MIN_TABLET_WIDTH = 768;
+    const COLOR_RED = "#F00";
+    const COLOR_GREEN = "#0F0";
+    let myGoods;
+    let goodsPrice;
+    let goodsLink = 'http://...';
+
+    function Developer() {
+        ...
+    }
+
+    const programmer = new Developer();
     ```
 
+## Выравнивание и отступы
+  Для форматирования кода используются пробелы. Ширина таба - 4 пробела.
 
-**[⬆ К оглавлению](#Оглавление)**
+## Оформление кода
+Пробел не ставится:
 
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit ipsa veritatis ratione asperiores eum iure blanditiis laudantium itaque laboriosam corrupti inventore explicabo fuga adipisci quaerat, ad amet nobis beatae dolorem ab, iusto laborum doloribus iste. Eius veniam nobis quia expedita repellat ipsa eos, et harum repudiandae delectus tempora animi quam fugiat hic voluptates officiis laborum, illo dolore architecto, repellendus omnis. Veniam in placeat, numquam eius omnis tempora enim dolorum temporibus pariatur asperiores tenetur hic debitis mollitia voluptas velit, illo laboriosam quia consectetur modi. Mollitia nulla quidem, minima soluta voluptas, placeat voluptates tenetur expedita sed unde libero fuga officiis illum qui et fugiat quo aspernatur fugit explicabo. Quae corporis excepturi explicabo et mollitia quia ad qui ab velit, quasi harum magnam minima asperiores laborum maiores eius dolorum quidem adipisci doloribus minus molestiae assumenda odit repellat sapiente dicta. Praesentium ex fugiat, mollitia assumenda sapiente porro dolorem numquam non aperiam distinctio, iste, libero.
+  + внутри скобок (между открывающей и первым символом, и закрывающей и последним);
+  + между именем функции и скобками с аргументами (только при вызове!);
+  + между точкой с запятой и выражением;
+  + между выражением и унарными операторами +, -, ++, --, !, ~, void.
 
-**[⬆ К оглавлению](#Оглавление)**
+В остальных случаях пробел ставится.
+
+    ```javascript
+    // bad
+    let result=1;
+    for(var i=0;i<n;i++){result*=x;}
+    alert(pow(x,n));
+
+    // good
+    let result = 1;
+    for (var i = 0; i < n; i++) {
+      result *= x;
+    }
+    alert(pow(x, n));
+    ```
+
+## Точка с запятой
+  Точка с запятой не ставится после управляющих конструкций, анонимных и именнованных функций. В остальных случаях точка с запятой ставится в конце каждой инструкции!
+
+    ```javascript
+    // no use
+    function () {
+      ...
+    }
+
+    function myFunction() {
+      ...
+    }
+
+    for () {
+      ...
+    }
+
+    switch () {
+      ...
+    }
+
+    try {
+      ...
+    } catch {
+      ...
+    }
+
+    if () {
+      ...
+    }
+
+
+    // use
+    let a = 1;
+
+    const oneArray = {};
+
+    const func = myFunction() {
+      ...
+    };
+
+    (function(){
+      ...
+    });
+    ```
+
+## Создание объектов
+  Запрещено создавать объекты с помощью конструктора *new (Object|Array|Function)*. При их создании следует пользоваться соответствующим литералом и специальным словом const. Так же не рекомендуется использовать любые выражения подразумевающие использование eval().
+
+    ```javascript
+    // bad
+    var oneObject = new Object();
+    var oneArray = new Array();
+    var oneFunction = new Function(аргументы, тело);
+    var programmer = new Developer();
+
+    // bad
+    var oneObject = {};
+    var oneArray = [];
+    var function func(аргументы) {
+        тело
+    }
+
+    // good
+    const oneObject = {};
+    const oneArray = [];
+    const function func(аргументы) {
+        тело
+    }
+    const programmer = new Developer();
+    ```
